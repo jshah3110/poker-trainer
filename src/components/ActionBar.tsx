@@ -1,18 +1,18 @@
 import { useState } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import { useGameStore } from '../store/game-store';
 import { useUIStore } from '../store/ui-store';
 import { BetSlider } from './BetSlider';
 import { formatChips } from '../utils/format';
 
 export function ActionBar() {
-  const { validActions, playerAction, isBotThinking } = useGameStore(s => ({
-    validActions: s.validActions,
-    playerAction: s.playerAction,
-    isBotThinking: s.isBotThinking,
-  }));
-  const { showBetSlider, setShowBetSlider, setBetSliderValue } = useUIStore();
-  const session = useGameStore(s => s.session);
-  const pot = session?.currentHand?.pot ?? 0;
+  const { validActions, playerAction, isBotThinking } = useGameStore(
+    useShallow(s => ({ validActions: s.validActions, playerAction: s.playerAction, isBotThinking: s.isBotThinking }))
+  );
+  const { showBetSlider, setShowBetSlider, setBetSliderValue } = useUIStore(
+    useShallow(s => ({ showBetSlider: s.showBetSlider, setShowBetSlider: s.setShowBetSlider, setBetSliderValue: s.setBetSliderValue }))
+  );
+  const pot = useGameStore(s => s.session?.currentHand?.pot ?? 0);
 
   const [isActing, setIsActing] = useState(false);
 

@@ -1,3 +1,4 @@
+import { useShallow } from 'zustand/react/shallow';
 import { useGameStore, HERO_ID, BOT_ID } from '../store/game-store';
 import { PlayerSeat } from './PlayerSeat';
 import { CommunityCards } from './CommunityCards';
@@ -7,11 +8,9 @@ import { HandResult } from './HandResult';
 import { ActionLog } from './ActionLog';
 
 export function Table() {
-  const { session, showResult, isBotThinking } = useGameStore(s => ({
-    session: s.session,
-    showResult: s.showResult,
-    isBotThinking: s.isBotThinking,
-  }));
+  const { session, showResult, isBotThinking } = useGameStore(
+    useShallow(s => ({ session: s.session, showResult: s.showResult, isBotThinking: s.isBotThinking }))
+  );
 
   if (!session) return null;
 

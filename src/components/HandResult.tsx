@@ -1,11 +1,11 @@
+import { useShallow } from 'zustand/react/shallow';
 import { useGameStore, HERO_ID } from '../store/game-store';
 import { formatChips } from '../utils/format';
 
 export function HandResult() {
-  const { session, dismissResult } = useGameStore(s => ({
-    session: s.session,
-    dismissResult: s.dismissResult,
-  }));
+  const { session, dismissResult } = useGameStore(
+    useShallow(s => ({ session: s.session, dismissResult: s.dismissResult }))
+  );
 
   const hand = session?.currentHand;
   if (!hand?.results) return null;
