@@ -9,18 +9,20 @@ export interface Card {
 export type CardStr = `${Rank}${Suit}`;
 export type Deck = Card[];
 
-export enum HandRank {
-  HighCard = 0,
-  Pair = 1,
-  TwoPair = 2,
-  ThreeOfAKind = 3,
-  Straight = 4,
-  Flush = 5,
-  FullHouse = 6,
-  FourOfAKind = 7,
-  StraightFlush = 8,
-  RoyalFlush = 9,
-}
+// Using const object instead of enum — required by erasableSyntaxOnly
+export const HandRank = {
+  HighCard:     0,
+  Pair:         1,
+  TwoPair:      2,
+  ThreeOfAKind: 3,
+  Straight:     4,
+  Flush:        5,
+  FullHouse:    6,
+  FourOfAKind:  7,
+  StraightFlush:8,
+  RoyalFlush:   9,
+} as const;
+export type HandRank = typeof HandRank[keyof typeof HandRank];
 
 export interface HandEvalResult {
   score: number;

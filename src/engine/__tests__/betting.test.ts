@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type { HandState, Action, Street, PlayerId } from '../../types';
+import type { HandState, Action, Street } from '../../types';
 import { getValidActions, applyAction, isStreetComplete } from '../betting';
 
 function makeHandState(overrides: Partial<HandState> = {}): HandState {

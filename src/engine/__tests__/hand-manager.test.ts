@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type { Card, HandState, Player, GameConfig, Street, PlayerId } from '../../types';
+import type { Card, HandState, Player, GameConfig, Street } from '../../types';
 import {
   startNewHand,
   advanceStreet,

@@ -1,4 +1,4 @@
-import type { Card, HandState, HandResult, Player, GameConfig, Action, Street, PlayerId } from '../types';
+import type { Card, HandState, HandResult, Player, GameConfig, Street, PlayerId } from '../types';
 import { createDeck, shuffleDeck, dealCards } from './deck';
 import { evaluateHand, compareHands } from './evaluator';
 import { isStreetComplete } from './betting';
