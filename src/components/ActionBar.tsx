@@ -59,7 +59,7 @@ export function ActionBar() {
       <button
         disabled={isActing}
         onClick={() => act('fold')}
-        className="flex-1 py-4 rounded-2xl bg-red-700 active:bg-red-600 text-white font-bold text-base shadow-lg transition-transform active:scale-95 disabled:opacity-50"
+        className="btn-ripple flex-1 py-4 rounded-2xl bg-red-700 hover:bg-red-600 active:bg-red-500 text-white font-bold text-base shadow-lg hover:shadow-[0_0_20px_rgba(220,38,38,0.6)] transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Fold
       </button>
@@ -69,7 +69,7 @@ export function ActionBar() {
         <button
           disabled={isActing}
           onClick={() => act('check')}
-          className="flex-[1.4] py-4 rounded-2xl bg-green-700 active:bg-green-600 text-white font-bold text-base shadow-lg transition-transform active:scale-95 disabled:opacity-50"
+          className="btn-ripple flex-[1.4] py-4 rounded-2xl bg-green-700 hover:bg-green-600 active:bg-green-500 text-white font-bold text-base shadow-lg hover:shadow-[0_0_20px_rgba(34,197,94,0.6)] transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Check
         </button>
@@ -77,7 +77,7 @@ export function ActionBar() {
         <button
           disabled={isActing}
           onClick={() => act('call', validActions.callAmount)}
-          className="flex-[1.4] py-4 rounded-2xl bg-green-700 active:bg-green-600 text-white font-bold text-base shadow-lg transition-transform active:scale-95 disabled:opacity-50"
+          className="btn-ripple flex-[1.4] py-4 rounded-2xl bg-green-700 hover:bg-green-600 active:bg-green-500 text-white font-bold text-base shadow-lg hover:shadow-[0_0_20px_rgba(34,197,94,0.6)] transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Call {formatChips(validActions.callAmount)}
         </button>
@@ -91,7 +91,7 @@ export function ActionBar() {
             setBetSliderValue(validActions.minRaise);
             setShowBetSlider(true);
           }}
-          className="flex-[1.4] py-4 rounded-2xl bg-blue-700 active:bg-blue-600 text-white font-bold text-base shadow-lg transition-transform active:scale-95 disabled:opacity-50"
+          className="btn-ripple flex-[1.4] py-4 rounded-2xl bg-blue-700 hover:bg-blue-600 active:bg-blue-500 text-white font-bold text-base shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Raise
         </button>
@@ -99,7 +99,7 @@ export function ActionBar() {
         <button
           disabled={isActing}
           onClick={() => act('all-in', validActions.maxRaise)}
-          className="flex-[1.4] py-4 rounded-2xl bg-blue-700 active:bg-blue-600 text-white font-bold text-base shadow-lg transition-transform active:scale-95 disabled:opacity-50"
+          className="btn-ripple flex-[1.4] py-4 rounded-2xl bg-blue-700 hover:bg-blue-600 active:bg-blue-500 text-white font-bold text-base shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           All-In
         </button>

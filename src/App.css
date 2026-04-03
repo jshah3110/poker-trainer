@@ -1,4 +1,4 @@
-/* Card animations */
+/* ==================== CARD ANIMATIONS ==================== */
 .card-deal {
   animation: dealCard 0.3s ease-out forwards;
 }
@@ -43,5 +43,143 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ==================== TIER 1: BUTTON FEEDBACK ==================== */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.btn-ripple:active::after {
+  animation: buttonRipple 0.6s ease-out;
+}
+
+@keyframes buttonRipple {
+  to {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+  }
+}
+
+/* ==================== TIER 1: POT & BALANCE ANIMATIONS ==================== */
+.pot-pulse {
+  animation: potPulse 0.6s ease-in-out;
+}
+
+@keyframes potPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px rgba(212, 168, 67, 0.8));
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ==================== TIER 1: ACTIVE PLAYER PULSE ==================== */
+.player-active-pulse {
+  animation: activePulse 2s ease-in-out infinite;
+}
+
+@keyframes activePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+}
+
+/* ==================== TIER 1: CONFETTI (WIN CELEBRATION) ==================== */
+@keyframes confetti {
+  0% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(400px) translateX(var(--tx)) rotate(720deg);
+  }
+}
+
+.confetti {
+  position: fixed;
+  pointer-events: none;
+  font-size: 24px;
+  animation: confetti 2s ease-out forwards;
+}
+
+/* ==================== TIER 1: FADE-IN STAGGER ==================== */
+.fade-stagger {
+  animation: fadeStagger 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.fade-stagger:nth-child(1) { animation-delay: 0ms; }
+.fade-stagger:nth-child(2) { animation-delay: 100ms; }
+.fade-stagger:nth-child(3) { animation-delay: 200ms; }
+.fade-stagger:nth-child(4) { animation-delay: 300ms; }
+.fade-stagger:nth-child(5) { animation-delay: 400ms; }
+
+@keyframes fadeStagger {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== MODAL ENTRANCE ==================== */
+.modal-entrance {
+  animation: modalEntrance 0.3s ease-out forwards;
+}
+
+@keyframes modalEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==================== DEALER BUTTON WOBBLE ==================== */
+.dealer-wobble {
+  animation: dealerWobble 2s ease-in-out infinite;
+}
+
+@keyframes dealerWobble {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
   }
 }

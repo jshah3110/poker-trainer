@@ -17,12 +17,14 @@ export function PlayerSeat({ player, hand, isDealer, isActive, isBot = false, is
   const isFolded = hand ? !hand.activePlayers.includes(player.id) : false;
 
   return (
-    <div className={`flex flex-col items-center gap-2 transition-opacity duration-300 ${isFolded ? 'opacity-40' : 'opacity-100'}`}>
+    <div className={`flex flex-col items-center gap-2 transition-all duration-300 ${
+      isFolded ? 'opacity-40 blur-sm scale-95' : 'opacity-100'
+    } ${isActive ? 'player-active-pulse' : ''}`}>
       {/* Name + dealer button row */}
       <div className="flex items-center gap-2">
         <span className="text-white font-semibold text-sm">{player.name}</span>
         {isDealer && (
-          <span className="bg-yellow-400 text-yellow-900 text-xs font-bold px-1.5 py-0.5 rounded-full">D</span>
+          <span className="dealer-wobble bg-yellow-400 text-yellow-900 text-xs font-bold px-1.5 py-0.5 rounded-full">D</span>
         )}
         {isBotThinking && (
           <span className="text-gray-400 text-xs animate-pulse">thinking…</span>
@@ -48,7 +50,11 @@ export function PlayerSeat({ player, hand, isDealer, isActive, isBot = false, is
 
       {/* Chips row */}
       <div className="flex items-center gap-2">
-        <div className={`text-sm font-bold px-3 py-1 rounded-full ${isActive ? 'bg-yellow-500 text-yellow-900' : 'bg-gray-700 text-white'}`}>
+        <div className={`text-sm font-bold px-3 py-1 rounded-full transition-all duration-200 ${
+          isActive
+            ? 'bg-yellow-500 text-yellow-900 shadow-[0_0_15px_rgba(234,179,8,0.5)]'
+            : 'bg-gray-700 text-white'
+        }`}>
           {formatChips(player.chips)}
         </div>
         {invested > 0 && (

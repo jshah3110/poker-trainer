@@ -166,6 +166,11 @@ export const useGameStore = create<GameStore>((set, get) => ({
     const player = session.players[activeIdx];
     if (!player || player.type !== 'human') return;
 
+    // Haptic feedback: medium vibration on action
+    if ('vibrate' in navigator) {
+      navigator.vibrate(100);
+    }
+
     const action = { playerId: player.id, type, amount, timestamp: Date.now() };
     const { newState, chipChange } = applyAction(hand, action, player.chips);
 
@@ -269,6 +274,11 @@ export const useGameStore = create<GameStore>((set, get) => ({
       ? getValidActions(hand, activePlayer.id, activePlayer.chips)
       : null;
 
+    // Haptic feedback: small vibration when it's player's turn
+    if (activePlayer.type === 'human' && 'vibrate' in navigator) {
+      navigator.vibrate(50);
+    }
+
     set({ validActions });
 
     if (activePlayer.type === 'bot') {
@@ -333,6 +343,19 @@ export const useGameStore = create<GameStore>((set, get) => ({
       const result = results.find(r => r.playerId === p.id);
       return result ? { ...p, chips: p.chips + result.amountWon } : p;
     });
+
+    // Haptic feedback: stronger vibration on win, weaker on loss
+    const heroResult = results.find(r => r.playerId === HERO_ID);
+    const heroWon = (heroResult?.amountWon ?? 0) > 0;
+    if ('vibrate' in navigator) {
+      if (heroWon) {
+        // Win pattern: triple tap
+        navigator.vibrate([100, 50, 100]);
+      } else {
+        // Loss pattern: single tap
+        navigator.vibrate(75);
+      }
+    }
 
     set({
       session: { ...session, players: updatedPlayers, currentHand: completedHand },

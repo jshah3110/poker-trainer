@@ -46,11 +46,16 @@ export function Table() {
 
       {/* ── Middle: felt area ──────────────────────────────────────────── */}
       <div
-        className="flex-1 flex flex-col items-center justify-center gap-2 mx-4 rounded-[40px] border-4"
+        className="flex-1 flex flex-col items-center justify-center gap-2 mx-4 rounded-[40px] border-4 transition-all duration-200"
         style={{
           background: 'radial-gradient(ellipse at center, #1a5c2e 0%, #0f3d1e 100%)',
           borderColor: '#0a2a14',
-          boxShadow: 'inset 0 0 40px rgba(0,0,0,0.5)',
+          boxShadow: `
+            inset 0 2px 10px rgba(255,255,255,0.05),
+            inset 0 -8px 30px rgba(0,0,0,0.6),
+            inset 0 0 50px rgba(0,0,0,0.4),
+            0 0 30px rgba(0,0,0,0.3)
+          `,
         }}
       >
         {/* Street label */}

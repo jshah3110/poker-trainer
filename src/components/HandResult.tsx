@@ -33,17 +33,21 @@ export function HandResult() {
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={dismissResult} />
 
       {/* Card */}
-      <div className="relative bg-gray-900 border border-gray-700 rounded-2xl p-6 mx-6 w-full max-w-sm shadow-2xl">
-        <h2 className={`text-3xl font-bold text-center mb-4 ${headlineColor}`}>
+      <div className="modal-entrance relative bg-gray-900 border border-gray-700 rounded-2xl p-6 mx-6 w-full max-w-sm shadow-2xl">
+        <h2 className={`text-3xl font-bold text-center mb-4 ${headlineColor} fade-stagger`}>
           {headline}
         </h2>
 
         <div className="space-y-2 mb-5">
-          {results.map(r => {
+          {results.map((r, idx) => {
             const player = session?.players.find(p => p.id === r.playerId);
             const isHero = r.playerId === HERO_ID;
             return (
-              <div key={r.playerId} className={`flex items-center justify-between rounded-lg px-3 py-2 ${isHero ? 'bg-gray-800' : 'bg-gray-800/50'}`}>
+              <div
+                key={r.playerId}
+                className={`fade-stagger flex items-center justify-between rounded-lg px-3 py-2 ${isHero ? 'bg-gray-800' : 'bg-gray-800/50'}`}
+                style={{ animationDelay: `${100 + idx * 100}ms` }}
+              >
                 <div>
                   <span className={`font-semibold text-sm ${isHero ? 'text-white' : 'text-gray-300'}`}>
                     {player?.name ?? r.playerId}
@@ -62,7 +66,7 @@ export function HandResult() {
 
         <button
           onClick={dismissResult}
-          className="w-full py-3 rounded-xl bg-blue-600 active:bg-blue-500 text-white font-bold text-base transition-transform active:scale-95"
+          className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-bold text-base transition-all duration-200 active:scale-95 shadow-lg hover:shadow-[0_0_15px_rgba(37,99,235,0.4)]"
         >
           Next Hand →
         </button>
